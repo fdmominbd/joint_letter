@@ -192,6 +192,9 @@ class _ThirdPageState extends State<ThirdPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          color: Colors.black,
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(

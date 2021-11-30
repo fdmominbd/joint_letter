@@ -222,6 +222,9 @@ class _SecondPageState extends State<SecondPage> {
     final double screenWidth=MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          color: Colors.black,
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: Text(
