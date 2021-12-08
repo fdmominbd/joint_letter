@@ -13,19 +13,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final double screenHeight=MediaQuery.of(context).size.height;
-    final double screenWidth=MediaQuery.of(context).size.width;
+    final double H=MediaQuery.of(context).size.height;
+    final double W=MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 100,
           backgroundColor: Colors.blue,
           centerTitle: true,
-          title: Text(
-              'যুক্তবর্ণের তালিকা।',
-                  style: TextStyle(
-                    fontSize: 25,
-                      fontWeight: FontWeight.bold
-                  ),
+          title: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+                'যুক্তবর্ণের তালিকা।',
+                    style: TextStyle(
+                      fontSize: 25,
+                        fontWeight: FontWeight.bold
+                    ),
+            ),
           ),
         ),
         drawer: Drawer(),
