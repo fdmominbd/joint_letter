@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:join_letterbd/about_us.dart';
 import 'package:join_letterbd/first_page.dart';
 import 'package:join_letterbd/second_page.dart';
 import 'package:join_letterbd/third_page.dart';
@@ -135,6 +136,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   ),
                   onTap: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>
+                            AboutUs()));
                     changeSelected(0);
                   },
                 ),
