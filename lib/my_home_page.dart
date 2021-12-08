@@ -30,7 +30,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold
                     ),
             ),
+
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // do something
+              },
+            )
+          ],
         ),
         drawer: Drawer(),
         body: Container(

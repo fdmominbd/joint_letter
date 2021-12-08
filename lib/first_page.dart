@@ -232,6 +232,17 @@ class _FirstPageState extends State<FirstPage> {
             fontWeight: FontWeight.bold
           ),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
       ),
       body: Column(
         children: [
