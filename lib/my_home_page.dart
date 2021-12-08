@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:join_letterbd/first_page.dart';
 import 'package:join_letterbd/second_page.dart';
@@ -11,6 +12,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int selected = 0;
+  void changeSelected(int index){
+    setState(() {
+      var _selected = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final double H=MediaQuery.of(context).size.height;
@@ -18,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 100,
+          toolbarHeight: 70,
           backgroundColor: Colors.blue,
           centerTitle: true,
           title: Padding(
@@ -44,7 +53,94 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         ),
-        drawer: Drawer(),
+
+        drawer: Container(
+          width: 250,
+          child: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/image/ima2.jpg'),
+                      fit: BoxFit.cover,
+                    )
+                  ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image(image: AssetImage('assets/image/logo1.png'),
+                          height: 70,
+                        ),
+                        Text('Joint Letter', style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.purple,
+                        ),),
+                        Row(
+                          children: [
+                            Text('fd.mominbd@gmail.com', style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.purple,
+                            ),),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                              size: 25,
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                ),
+                ListTile(
+                  selected: selected == 0,
+                  leading: Icon(Icons.folder, size: 28,
+                  ),
+                  title: Text(
+                    'My file', style: TextStyle(
+                    fontSize: 23,
+                  ),
+                  ),
+                  onTap: (){
+                    changeSelected(0);
+                  },
+                ),
+                ListTile(
+                  selected: selected == 0,
+                  leading: Icon(Icons.share, size: 28,
+                  ),
+                  title: Text(
+                    'Share', style: TextStyle(
+                    fontSize: 23,
+                  ),
+                  ),
+                  onTap: (){
+                    changeSelected(0);
+                  },
+                ),
+                new Divider(
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  selected: selected == 3,
+                  leading: Icon(Icons.account_circle, size: 28,
+                  ),
+                  title: Text(
+                    'About Us', style: TextStyle(
+                    fontSize: 23,
+                  ),
+                  ),
+                  onTap: (){
+                    changeSelected(0);
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+
         body: Container(
           child: Column(
             children: [
@@ -161,7 +257,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        bottomSheet: BottomAppBar(),
+
+        bottomSheet: BottomAppBar(color: Colors.blue,),
       ),
     );
   }
