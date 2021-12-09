@@ -61,40 +61,43 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Drawer(
             child: ListView(
               children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/image/ima2.jpg'),
-                      fit: BoxFit.cover,
-                    )
+                Container(
+                  height: 200,
+                  child: DrawerHeader(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/image/ima2.jpg'),
+                        fit: BoxFit.cover,
+                      )
+                    ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image(image: AssetImage('assets/image/logo1.png'),
+                            height: 70,
+                          ),
+                          Text('Joint Letter', style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),),
+                          Row(
+                            children: [
+                              Text('fd.mominbd@gmail.com', style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                              ),),
+                              Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white,
+                                size: 25,
+                              )
+                            ],
+                          )
+                        ],
+                      )
                   ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image(image: AssetImage('assets/image/logo1.png'),
-                          height: 70,
-                        ),
-                        Text('Joint Letter', style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                        ),),
-                        Row(
-                          children: [
-                            Text('fd.mominbd@gmail.com', style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.white,
-                              size: 25,
-                            )
-                          ],
-                        )
-                      ],
-                    )
                 ),
                 ListTile(
                   selected: selected == 0,
@@ -265,7 +268,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-
         bottomSheet: BottomAppBar(color: Colors.blue,),
       ),
     );
