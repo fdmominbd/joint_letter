@@ -25,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final double H=MediaQuery.of(context).size.height;
     final double W=MediaQuery.of(context).size.width;
+    var shineShadow;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -55,9 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
 
-        drawer: Container(
+        drawer:  Container(
           width: 250,
-
           child: Drawer(
             child: ListView(
               children: [
@@ -66,35 +66,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: DrawerHeader(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/image/ima2.jpg'),
+                        image: AssetImage('assets/image/imag1.png'),
                         fit: BoxFit.cover,
                       )
                     ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: [
-                          Image(image: AssetImage('assets/image/logo1.png'),
+                          Image(image: AssetImage('assets/image/log1.png'),
                             height: 70,
                           ),
                           Text('Joint Letter', style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
+                            fontSize: 40,
+                            color: Colors.lightBlue,
+                            fontWeight: FontWeight.bold,
+                            shadows:  shineShadow?.shadows,
                           ),),
-                          Row(
-                            children: [
-                              Text('fd.mominbd@gmail.com', style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),),
-                              Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            ],
-                          )
+
                         ],
                       )
                   ),
@@ -172,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: const EdgeInsets.only(left: 17, top: 20, bottom: 20, right: 10),
                           child: Text(
                             'বাংলায় ব্যবহৃত ২৮৬টি যুক্তবর্ণ দেওয়া হয়েছে, এর বাইরে কোন যুক্তবর্ণ সম্ভবত বাংলায় প্রচলিত নেই।',
-                            style: TextStyle(fontSize: 14.50,), maxLines: 2, ),
+                            style: TextStyle(fontSize: W*0.04, ), maxLines: 2, textAlign: TextAlign.justify, ),
                         ),
                       )
                     )),
