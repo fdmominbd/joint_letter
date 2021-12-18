@@ -75,7 +75,7 @@ class _FirstPageState extends State<FirstPage> {
                         SizedBox(height: 2,),
                         (AllLetterList.commntList1[index].length>2)?
                         Text(AllLetterList.commntList1[index],style: TextStyle(
-                          fontSize: 10, color: Colors.lightBlueAccent,
+                          fontSize: 10, color: Colors.black38,
                         ),
                         ):
                         SizedBox.shrink(),

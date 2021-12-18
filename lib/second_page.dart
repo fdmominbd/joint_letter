@@ -79,7 +79,7 @@ class _SecondPageState extends State<SecondPage> {
                         SizedBox(height: 2,),
                     (AllLetterList.commntList2[index].length>2)?
                         Text(AllLetterList.commntList2[index],style: TextStyle(
-                          fontSize: 10, color: Colors.lightBlueAccent,
+                          fontSize: 10, color: Colors.black38,
                         ),
                         ):
                       SizedBox.shrink(),

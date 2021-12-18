@@ -73,10 +73,9 @@ class _ThirdPageState extends State<ThirdPage> {
                         SizedBox(height: 2,),
                         (AllLetterList.commntList3[index].length>2)?
                         Text(AllLetterList.commntList3[index],style: TextStyle(
-                          fontSize: 10, color: Colors.lightBlueAccent,
+                          fontSize: 10, color: Colors.black38,
                         ),
-                        ):
-                        SizedBox.shrink(),
+                        ):SizedBox.shrink(),
                       ],
                     ),
                   );

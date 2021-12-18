@@ -25,7 +25,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final double H=MediaQuery.of(context).size.height;
     final double W=MediaQuery.of(context).size.width;
-    var shineShadow;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -73,15 +72,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
 
                         children: [
-                          Image(image: AssetImage('assets/image/log1.png'),
-                            height: 70,
+                          Center(
+                            child: Text('যুক্তবর্ণের তালিকা।', style: TextStyle(
+                              shadows: <Shadow>[
+                                Shadow(
+                                  blurRadius: 0.3,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                Shadow(
+                                  blurRadius: 0.3,
+                                  color:Color.fromARGB(255, 255, 255, 255),
+                                ),
+                              ],
+                              fontSize: 25,
+                              color: Colors.lightBlue,
+                              fontWeight: FontWeight.bold,
+                            ),),
                           ),
-                          Text('Joint Letter', style: TextStyle(
-                            fontSize: 40,
-                            color: Colors.lightBlue,
-                            fontWeight: FontWeight.bold,
-                            shadows:  shineShadow?.shadows,
-                          ),),
 
                         ],
                       )
