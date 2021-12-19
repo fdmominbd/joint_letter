@@ -14,15 +14,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int selected = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  int _selected = 0;
   void changeSelected(int index){
     setState(() {
-      var _selected = index;
+      _selected = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     final double H=MediaQuery.of(context).size.height;
     final double W=MediaQuery.of(context).size.width;
     return SafeArea(
@@ -40,7 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold
                     ),
             ),
-
           ),
           actions: <Widget>[
             IconButton(
@@ -48,99 +50,90 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.settings,
                 color: Colors.white,
               ),
-              onPressed: () {
-                // do something
-              },
+              onPressed: () {},
             )
           ],
         ),
-
-        drawer:  Container(
-          width: 250,
-          child: Drawer(
-            child: ListView(
-              children: [
-                Container(
-                  height: 200,
-                  child: DrawerHeader(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/image/imag1.png'),
-                        fit: BoxFit.cover,
-                      )
-                    ),
-                      child: Column(
-
-                        children: [
-                          Center(
-                            child: Text('যুক্তবর্ণের তালিকা।', style: TextStyle(
-                              shadows: <Shadow>[
-                                Shadow(
-                                  blurRadius: 0.3,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                ),
-                                Shadow(
-                                  blurRadius: 0.3,
-                                  color:Color.fromARGB(255, 255, 255, 255),
-                                ),
-                              ],
-                              fontSize: 25,
-                              color: Colors.lightBlue,
-                              fontWeight: FontWeight.bold,
-                            ),),
+        drawer:  Padding(
+          padding: const EdgeInsets.only(top: 70),
+          child: Container(
+            width: 200,
+            child: SafeArea(
+              child: Drawer(
+                child:  GestureDetector(
+                  onTap: () {
+                    if(_scaffoldKey.currentState!.isDrawerOpen){
+                      _scaffoldKey.currentState!.openEndDrawer();
+                    }else{
+                      _scaffoldKey.currentState!.openDrawer();
+                    }
+                  },
+                  child: ListView(
+                    children: [
+                      Container(
+                        height: 200,
+                        child: DrawerHeader(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/image/imag1.png'),
+                              fit: BoxFit.cover,
+                            )
                           ),
-
-                        ],
-                      )
+                            child: Column(
+                              children: [],
+                            )
+                        ),
+                      ),
+                      ListTile(
+                        selected: _selected == 0,
+                        leading: Icon(Icons.star_rate_sharp, size: 28,
+                        ),
+                        title: Text(
+                          'Rate App', style: TextStyle(
+                          fontSize: 23,
+                        ),
+                        ),
+                        onTap: (){
+                          changeSelected(0);
+                        },
+                      ),
+                      ListTile(
+                        selected: _selected == 1,
+                        leading: Icon(Icons.share, size: 28,
+                        ),
+                        title: Text(
+                          'Share', style: TextStyle(
+                          fontSize: 23,
+                        ),
+                        ),
+                        onTap: (){
+                          changeSelected(1);
+                        },
+                      ),
+                      new Divider(
+                        indent: 10,
+                        endIndent: 10,
+                      ),
+                      ListTile(
+                        selected: _selected == 2,
+                        leading: Icon(Icons.account_circle, size: 28,
+                        ),
+                        title: Text(
+                          'About Us', style: TextStyle(
+                          fontSize: 23,
+                        ),
+                        ),
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context)=>
+                                  AboutUs()));
+                          changeSelected(2);
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                ListTile(
-                  selected: selected == 0,
-                  leading: Icon(Icons.folder, size: 28,
-                  ),
-                  title: Text(
-                    'My file', style: TextStyle(
-                    fontSize: 23,
-                  ),
-                  ),
-                  onTap: (){
-                    changeSelected(0);
-                  },
-                ),
-                ListTile(
-                  selected: selected == 0,
-                  leading: Icon(Icons.share, size: 28,
-                  ),
-                  title: Text(
-                    'Share', style: TextStyle(
-                    fontSize: 23,
-                  ),
-                  ),
-                  onTap: (){
-                    changeSelected(0);
-                  },
-                ),
-                new Divider(
-                  indent: 10,
-                  endIndent: 10,
-                ),
-                ListTile(
-                  selected: selected == 3,
-                  leading: Icon(Icons.account_circle, size: 28,
-                  ),
-                  title: Text(
-                    'About Us', style: TextStyle(
-                    fontSize: 23,
-                  ),
-                  ),
-                  onTap: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=>
-                            AboutUs()));
-                    changeSelected(0);
-                  },
-                ),
-              ],
+              ),
             ),
           ),
         ),
