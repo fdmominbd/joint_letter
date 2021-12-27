@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:join_letterbd/about_us.dart';
@@ -94,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         ),
                         onTap: (){
+                          Link("https://play.google.com");
                           changeSelected(0);
                         },
                       ),

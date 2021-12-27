@@ -14,7 +14,7 @@ class _AboutUsState extends State<AboutUs> {
     final double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.deepPurple,
         toolbarHeight: 50,
         title: Text('About'),
       ),
@@ -22,7 +22,7 @@ class _AboutUsState extends State<AboutUs> {
         height: h,
         width: w,
         decoration: BoxDecoration(
-          color: Colors.black26
+          color: Colors.deepPurpleAccent
         ),
         child: Column(
           children: [
