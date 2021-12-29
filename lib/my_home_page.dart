@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: const EdgeInsets.only(left: 17, top: 20, bottom: 20, right: 10),
                           child: Text(
                             'বাংলায় ব্যবহৃত ২৮৬টি যুক্তবর্ণ দেওয়া হয়েছে, এর বাইরে কোন যুক্তবর্ণ সম্ভবত বাংলায় প্রচলিত নেই।',
-                            style: TextStyle(fontSize: W*0.04, ), maxLines: 2, textAlign: TextAlign.justify, ),
+                            style: TextStyle(fontSize: W*0.04, ), maxLines: 2, textAlign: TextAlign.center, ),
                         ),
                       )
                     )),
