@@ -10,6 +10,7 @@ class ThirdPage extends StatefulWidget {
 }
 
 class _ThirdPageState extends State<ThirdPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,7 @@ class _ThirdPageState extends State<ThirdPage> {
               fontWeight: FontWeight.bold
           ),
         ),
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: Icon(
               Icons.search,
@@ -44,7 +45,7 @@ class _ThirdPageState extends State<ThirdPage> {
           Expanded(
             child: ListView.builder(
                 itemCount: AllLetterList.letterList3.length,
-                itemBuilder: (context,index){
+                itemBuilder: (context,index) {
                   return Padding(
                     padding: const EdgeInsets.only
                       (top: 9, left: 20, right: 20),
@@ -53,10 +54,11 @@ class _ThirdPageState extends State<ThirdPage> {
                         Container(
                             height: 30,
                             width: 350,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                               boxShadow: [BoxShadow(
                                 color: Colors.black,
-                              ),],
+                              ),
+                              ],
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 bottomRight: Radius.circular(20),
@@ -64,25 +66,27 @@ class _ThirdPageState extends State<ThirdPage> {
                               color: Colors.white,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 15, top: 3, bottom: 3,),
+                              padding: const EdgeInsets.only(
+                                left: 15, top: 3, bottom: 3,),
                               child: Text(AllLetterList.letterList3[index],
                                 style: TextStyle(color: Colors.black,
                                     fontSize: 18),
                               ),
                             )),
                         SizedBox(height: 2,),
-                        (AllLetterList.commntList3[index].length>2)?
-                        Text(AllLetterList.commntList3[index],style: TextStyle(
+                        (AllLetterList.commntList3[index].length > 2) ?
+                        Text(AllLetterList.commntList3[index], style: TextStyle(
                           fontSize: 10, color: Colors.black38,
                         ),
-                        ):SizedBox.shrink(),
+                        ) : SizedBox.shrink(),
                       ],
                     ),
                   );
                 }
             ),
-          )
+          ),
         ],
+
       ),
     );
   }
