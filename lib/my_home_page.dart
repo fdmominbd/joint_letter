@@ -6,6 +6,8 @@ import 'package:join_letterbd/about_us.dart';
 import 'package:join_letterbd/first_page.dart';
 import 'package:join_letterbd/second_page.dart';
 import 'package:join_letterbd/third_page.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wc_flutter_share/wc_flutter_share.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+ const url = "https://www.play.google.com/store/apps";
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -30,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final double H=MediaQuery.of(context).size.height;
     final double W=MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -96,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         ),
                         onTap: (){
-                          Link("https://play.google.com");
+                          launch(url);
                           changeSelected(0);
                         },
                       ),
@@ -110,6 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         ),
                         onTap: (){
+                           WcFlutterShare.share(
+                              sharePopupTitle: 'Share',
+                              subject: 'This is subject',
+                              text: 'This is text',
+                              mimeType: 'text/plain');
+
                           changeSelected(1);
                         },
                       ),

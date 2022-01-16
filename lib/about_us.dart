@@ -14,7 +14,7 @@ class _AboutUsState extends State<AboutUs> {
     final double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.deepPurple,
         toolbarHeight: 50,
         title: Text('About'),
       ),
@@ -22,19 +22,15 @@ class _AboutUsState extends State<AboutUs> {
         height: h,
         width: w,
         decoration: BoxDecoration(
-          color: Colors.white
+          color: Colors.deepPurple
         ),
         child: Column(
           children: [
             SizedBox(height: h*0.10,),
-            Text('যুক্তবর্ণের তালিকা।', style: TextStyle(fontSize: 25, shadows: [ Shadow(
-              blurRadius: 5.0, color: Colors.white, offset: Offset(1.0, 1.0),),],
-                fontWeight: FontWeight.bold, color: Colors.pink),),
-            Text('(Read Free)',style: TextStyle(fontSize: 13,color: Colors.purple, shadows: [ Shadow(
-              blurRadius: 5.0, color: Colors.white, offset: Offset(1.0, 1.0),),],),),
+            Text("যুক্তবর্ণ", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.pink),),
+            Text('(Read Free)',style: TextStyle(fontSize: 13,color: Colors.purple,),),
             SizedBox(height: h*0.05,),
-            Text('Developed by MOMIN',style: TextStyle(fontSize: 18, color: Colors.white, shadows: [ Shadow(
-              blurRadius: 12, color: Color.fromRGBO(0, 0, 0, 0.16), offset: Offset(2, 2),),],),),
+            Text('Developed by MOMIN',style: TextStyle(fontSize: 18, color: Colors.white,),),
             Text('fd.mominbd@gmail.com',style: TextStyle(fontSize: 12,color: Colors.white60 ),),
             SizedBox(height: h*0.05,),
             Image(
@@ -42,8 +38,7 @@ class _AboutUsState extends State<AboutUs> {
               height: 100.0,
               image: AssetImage('assets/image/momin1.png'),
               fit: BoxFit.cover,),
-            Text('Version : 1.5.1',style: TextStyle(fontSize: 16, color: Colors.pink, shadows: [ Shadow(
-              blurRadius: 5.0, color: Colors.white, offset: Offset(1.0, 1.0),),],),),
+            Text('Version : 1.5.1',style: TextStyle(fontSize: 16, color: Colors.pink,),),
             SizedBox(height: h*0.05,),
             Text('Icon made, Graphics & Designed by',
               style: TextStyle(fontSize: 16, color: Colors.white70),),
