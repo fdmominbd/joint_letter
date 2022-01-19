@@ -8,7 +8,27 @@ class FirstPage extends StatefulWidget {
   _FirstPageState createState() => _FirstPageState();
 }
 
+Widget appbar= Text("প্রথম অংশ।",
+  style: TextStyle(
+      fontSize: 30, color: Colors.lightBlue,
+      fontWeight: FontWeight.bold
+  ),);
+Icon searchIcon=Icon(
+  Icons.search,
+  color: Colors.black,
+);
+TextEditingController textController= TextEditingController();
+
 class _FirstPageState extends State<FirstPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,22 +38,36 @@ class _FirstPageState extends State<FirstPage> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
-          'প্রথম অংশ।',
-          style: TextStyle(
-            fontSize: 30, color: Colors.lightBlue,
-            fontWeight: FontWeight.bold
-          ),
-        ),
-        actions: <Widget>[
+        title: appbar,
+        actions: [
           IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
             onPressed: () {
-              // do something
+              setState(() {
+                if(searchIcon.icon==Icons.search){
+                  appbar=TextField(
+                    controller: textController,
+                    style: TextStyle(
+                        color: Colors.black
+                    ),
+                    decoration: InputDecoration(
+                      hintText: "Type Here....",
+                      hintStyle: TextStyle(
+                        color: Colors.black
+                      )
+                    ),
+                  );
+                  searchIcon=Icon(Icons.clear,color: Colors.black,);
+                }else{
+                  appbar=Text("প্রথম অংশ।",
+                    style: TextStyle(
+                        fontSize: 30, color: Colors.lightBlue,
+                        fontWeight: FontWeight.bold
+                    ),);
+                  searchIcon=Icon(Icons.search,color: Colors.black,);
+                }
+              });
             },
+            icon: searchIcon,
           )
         ],
       ),

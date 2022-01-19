@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alert_dialog/alert_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:join_letterbd/about_us.dart';
@@ -16,7 +17,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
- const url = "https://www.play.google.com/store/apps";
+ const url = "https://play.google.com/store/apps";
 
 class _MyHomePageState extends State<MyHomePage> {
 
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                            WcFlutterShare.share(
                               sharePopupTitle: 'Share',
                               subject: 'This is subject',
-                              text: 'This is text',
+                              text: "",
                               mimeType: 'text/plain');
 
                           changeSelected(1);
@@ -152,122 +153,144 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
 
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                SizedBox(height: 30,),
-                Container(
-                    width: MediaQuery.of(context).size.width/1.10,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 12,
-                          color: Color.fromRGBO(0, 0, 0, 0.16),
-                        )],
-                    ),
-                    child: Center(
-                      child: Card(
-                        shadowColor: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15, right: 10),
-                          child: Text(
-                            'বাংলায় ব্যবহৃত ২৮৬টি যুক্তবর্ণ দেওয়া হয়েছে, এর বাইরে কোন যুক্তবর্ণ সম্ভবত বাংলায় প্রচলিত নেই।',
-                            style: TextStyle(fontSize: W*0.04, color: Colors.red ),
-                            maxLines: 2, textAlign: TextAlign.center, ),
-                        ),
-                      )
-                    )),
-                SizedBox(height: 60,),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width/1.3,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.lightBlue,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.white)
-                        )
+        body: WillPopScope(
+          onWillPop: ()async{
+            alert(
+              context,
+              title: Text("যুক্তবর্ণ"),
+              content: Text("আপনি প্রস্থান করতে চান??"),
+              textOK: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      exit(0);
+                    },
+                      child: Text("হ্যাঁ")),
+                  SizedBox(width: 30,),
+                  Text("না"),
+                ],
+              ),
+            );
+          return true;
+        },
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  SizedBox(height: 30,),
+                  Container(
+                      width: MediaQuery.of(context).size.width/1.10,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(2, 2),
+                            blurRadius: 12,
+                            color: Color.fromRGBO(0, 0, 0, 0.16),
+                          )],
                       ),
-                     onPressed: (){
-                     Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>
-                    FirstPage()));
-              },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Text(
-                                'প্রথম অংশ।',
-                                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                              ),
-                              Spacer(),
-                              Icon(Icons.chevron_right, color: Colors.white),
-                            ],
+                      child: Center(
+                        child: Card(
+                          shadowColor: Colors.blue,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 15, bottom: 15, right: 10),
+                            child: Text(
+                              'বাংলায় ব্যবহৃত ২৮৬টি যুক্তবর্ণ দেওয়া হয়েছে, এর বাইরে কোন যুক্তবর্ণ সম্ভবত বাংলায় প্রচলিত নেই।',
+                              style: TextStyle(fontSize: W*0.04, color: Colors.red ),
+                              maxLines: 2, textAlign: TextAlign.center, ),
                           ),
-                        ),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width/1.3,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
+                        )
+                      )),
+                  SizedBox(height: 60,),
+                  Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width/1.3,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
                           primary: Colors.lightBlue,
                           shape: RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.white)
+                            side: BorderSide(color: Colors.white)
+                          )
+                        ),
+                       onPressed: (){
+                       Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>
+                      FirstPage()));
+                },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'প্রথম অংশ।',
+                                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                ),
+                                Spacer(),
+                                Icon(Icons.chevron_right, color: Colors.white),
+                              ],
+                            ),
                           ),
                       ),
-                        onPressed: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context)=>
-                                  SecondPage()));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Text('দ্বিতীয় অংশ।',style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),),
-                              Spacer(),
-                              Icon(Icons.chevron_right, color: Colors.white),
-                            ],
-                          ),
-                        )),
+                    ),
                   ),
-                ),
-                Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width/1.3,
-                    child: ElevatedButton(
+                  Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width/1.3,
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Colors.lightBlue,
                             shape: RoundedRectangleBorder(
                                 side: BorderSide(color: Colors.white)
-                            )
+                            ),
                         ),
-                        onPressed: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context)=>
-                                  ThirdPage()));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Text('তৃতীয় অংশ।',style: TextStyle(
-                                  fontSize: 20,fontWeight: FontWeight.bold),),
-                              Spacer(),
-                              Icon(Icons.chevron_right, color: Colors.white),
-                            ],
-                          ),
-                        )),
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context)=>
+                                    SecondPage()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                Text('দ্বিতীয় অংশ।',style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),),
+                                Spacer(),
+                                Icon(Icons.chevron_right, color: Colors.white),
+                              ],
+                            ),
+                          )),
+                    ),
                   ),
-                ),
-              ],
+                  Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width/1.3,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.lightBlue,
+                              shape: RoundedRectangleBorder(
+                                  side: BorderSide(color: Colors.white)
+                              )
+                          ),
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context)=>
+                                    ThirdPage()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                Text('তৃতীয় অংশ।',style: TextStyle(
+                                    fontSize: 20,fontWeight: FontWeight.bold),),
+                                Spacer(),
+                                Icon(Icons.chevron_right, color: Colors.white),
+                              ],
+                            ),
+                          )),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
