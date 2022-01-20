@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:join_letterbd/all_list.dart';
 
@@ -8,27 +10,49 @@ class FirstPage extends StatefulWidget {
   _FirstPageState createState() => _FirstPageState();
 }
 
-Widget appbar= Text("প্রথম অংশ।",
-  style: TextStyle(
-      fontSize: 30, color: Colors.lightBlue,
-      fontWeight: FontWeight.bold
-  ),);
-Icon searchIcon=Icon(
-  Icons.search,
-  color: Colors.black,
-);
-TextEditingController textController= TextEditingController();
-
 class _FirstPageState extends State<FirstPage> {
+
+  Widget appbar= Text("প্রথম অংশ।",
+    style: TextStyle(
+        fontSize: 30, color: Colors.lightBlue,
+        fontWeight: FontWeight.bold
+    ),);
+  Icon searchIcon=Icon(
+    Icons.search,
+    color: Colors.black,
+  );
+  TextEditingController textController= TextEditingController();
+
   @override
   void initState() {
     super.initState();
+    setState(() {
+      _lList= AllLetterList.letterList1;
+    });
   }
   @override
   void dispose() {
     textController.dispose();
     super.dispose();
   }
+
+  String search="";
+  searchText(value){
+    setState(() {
+      search=value;
+    });
+  }
+  AllLetterList allLetterList=AllLetterList();
+  List<String> _lList=[];
+
+
+
+  UnmodifiableListView<String> get searchedList =>
+      search.isEmpty?
+      UnmodifiableListView(_lList):
+      UnmodifiableListView(_lList.where
+        ((item) => item.contains(search)));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,34 +65,37 @@ class _FirstPageState extends State<FirstPage> {
         title: appbar,
         actions: [
           IconButton(
-            onPressed: () {
-              setState(() {
-                if(searchIcon.icon==Icons.search){
-                  appbar=TextField(
-                    controller: textController,
-                    style: TextStyle(
-                        color: Colors.black
-                    ),
-                    decoration: InputDecoration(
-                      hintText: "Type Here....",
-                      hintStyle: TextStyle(
-                        color: Colors.black
-                      )
-                    ),
-                  );
-                  searchIcon=Icon(Icons.clear,color: Colors.black,);
-                }else{
-                  appbar=Text("প্রথম অংশ।",
-                    style: TextStyle(
-                        fontSize: 30, color: Colors.lightBlue,
-                        fontWeight: FontWeight.bold
-                    ),);
-                  searchIcon=Icon(Icons.search,color: Colors.black,);
-                }
-              });
-            },
-            icon: searchIcon,
-          )
+              onPressed: (){
+                setState(() {
+                  if(searchIcon.icon==Icons.search){
+                    appbar=TextField(
+                      onChanged: (val){
+                        searchText(val);
+                      },
+                      controller: textController,
+                      style: TextStyle(
+                          color: Colors.black
+                      ),
+                      decoration: InputDecoration(
+                          hintText: "Type here...",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          )
+                      ),
+                    );
+                    searchIcon=Icon(Icons.clear,color: Colors.black);
+                  } else{
+                    searchText("");
+                    appbar=Text("প্রথম অংশ।",
+                      style: TextStyle(
+                          fontSize: 30, color: Colors.lightBlue,
+                          fontWeight: FontWeight.bold
+                      ),);
+                    searchIcon=Icon(Icons.search,color: Colors.black);
+                  }
+                });
+              },
+              icon: searchIcon)
         ],
       ),
       body: Column(
@@ -76,7 +103,7 @@ class _FirstPageState extends State<FirstPage> {
           SizedBox(height: 15,),
           Expanded(
             child: ListView.builder(
-              itemCount: AllLetterList.letterList1.length,
+              itemCount: searchedList.length,
                 itemBuilder: (context,index){
                   return Padding(
                     padding: const EdgeInsets.only
@@ -101,7 +128,7 @@ class _FirstPageState extends State<FirstPage> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 15, top: 3, bottom: 3,),
-                              child: Text(AllLetterList.letterList1[index],
+                              child: Text(searchedList[index],
                               style: TextStyle(color: Colors.black,
                               fontSize: 18),
                               ),

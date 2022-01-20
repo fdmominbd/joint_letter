@@ -83,13 +83,14 @@ class _AboutUsState extends State<AboutUs> {
                             image: AssetImage('assets/image/linkedin1.png'),
                             fit: BoxFit.cover,),
                         ),
+                        SizedBox(width: 10,),
                         InkWell(
                           onTap: (){
                             launch(url3);
                           },
                           child: Image(
-                            width: 30.0,
-                            height: 30.0,
+                            width: 29.0,
+                            height: 29.0,
                             image: AssetImage('assets/image/youtube1.png'),
                             fit: BoxFit.cover,),
                         ),

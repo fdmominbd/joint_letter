@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:join_letterbd/all_list.dart';
@@ -11,6 +13,48 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
+
+  Widget appbar= Text("দ্বিতীয় অংশ।",
+    style: TextStyle(
+        fontSize: 30, color: Colors.lightBlue,
+        fontWeight: FontWeight.bold
+    ),);
+  Icon searchIcon=Icon(
+    Icons.search,
+    color: Colors.black,
+  );
+  TextEditingController textController= TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _lList= AllLetterList.letterList2;
+    });
+  }
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  String search="";
+  searchText(value){
+    setState(() {
+      search=value;
+    });
+  }
+  AllLetterList allLetterList=AllLetterList();
+  List<String> _lList=[];
+
+
+
+  UnmodifiableListView<String> get searchedList =>
+      search.isEmpty?
+      UnmodifiableListView(_lList):
+      UnmodifiableListView(_lList.where
+        ((item) => item.contains(search)));
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight=MediaQuery.of(context).size.height;
@@ -22,23 +66,40 @@ class _SecondPageState extends State<SecondPage> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
-          'দ্বিতীয় অংশ।',
-          style: TextStyle(
-            fontSize: 30, color: Colors.lightBlue,
-              fontWeight: FontWeight.bold
-          ),
-        ),
-        actions: <Widget>[
+        title: appbar,
+        actions:[
           IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              // do something
-            },
-          )
+              onPressed: (){
+                setState(() {
+                  if(searchIcon.icon==Icons.search){
+                    appbar=TextField(
+                      onChanged: (val){
+                        searchText(val);
+                      },
+                      controller: textController,
+                      style: TextStyle(
+                          color: Colors.black
+                      ),
+                      decoration: InputDecoration(
+                          hintText: "Type here...",
+                          hintStyle: TextStyle(
+                              color: Colors.black
+                          )
+                      ),
+                    );
+                    searchIcon=Icon(Icons.clear,color: Colors.black);
+                  } else{
+                    searchText("");
+                    appbar=Text("দ্বিতীয় অংশ।",
+                      style: TextStyle(
+                          fontSize: 30, color: Colors.lightBlue,
+                          fontWeight: FontWeight.bold
+                      ),);
+                    searchIcon=Icon(Icons.search,color: Colors.black);
+                  }
+                });
+              },
+              icon: searchIcon)
         ],
       ),
       body: Column(
@@ -46,7 +107,7 @@ class _SecondPageState extends State<SecondPage> {
           SizedBox(height: 15,),
           Expanded(
             child: ListView.builder(
-                itemCount: AllLetterList.letterList2.length,
+                itemCount: searchedList.length,
                 itemBuilder: (context,index){
                   return Padding(
                     padding: const EdgeInsets.only
@@ -71,7 +132,7 @@ class _SecondPageState extends State<SecondPage> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 15, top: 3, bottom: 3,),
-                              child: Text(AllLetterList.letterList2[index],
+                              child: Text(searchedList[index],
                                 style: TextStyle(color: Colors.black,
                                     fontSize: 18),
                               ),
