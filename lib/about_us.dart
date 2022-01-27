@@ -10,7 +10,7 @@ class AboutUs extends StatefulWidget {
 
 const url1 = "https://www.github.com/fdmominbd";
 const url2 = "https://www.linkedin.com/in/emominbd";
-const url3 = "https://www.youtube.com/c/islamadvocacy";
+const url3 = "https://www.youtube.com/channel/UCtkdQZX1_casJ_mbBRu53EQ";
 
 class _AboutUsState extends State<AboutUs> {
   @override

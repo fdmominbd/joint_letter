@@ -49,8 +49,8 @@ flutter_icons:
   image_path: "assets/image/lll.jpg"
 
 flutter_native_splash:
-  color: "#42a5f5"
-  image: assets/image/sss.png
+  color: "#000000"
+  image: assets/image/spla1.png
   android: true
   ios: true
   web: true
