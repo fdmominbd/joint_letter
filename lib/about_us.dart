@@ -55,7 +55,7 @@ class _AboutUsState extends State<AboutUs> {
             SizedBox(height: h*0.05,),
             Column(
               children: [
-                Text('Link:',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white,),),
+                Text('Links:',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white,),),
                 Divider(indent: 20, endIndent: 20, thickness: 1, color: Colors.white,),
                 Column(
                   children: [
